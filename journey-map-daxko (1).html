@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SugarWOD Marketplace – Fitness Influencer Journey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Daxko Primary Blues */
+            --primary-000: #E9F6FF;
+            --primary-100: #CBE7FF;
+            --primary-200: #9BD2FF;
+            --primary-300: #63B9FF;
+            --primary-400: #3192E3;
+            --primary-500: #0070CB;
+            --primary-600: #0059A2;
+            --primary-700: #004175;
+            
+            /* Daxko Grays */
+            --gray-000: #F5F5F5;
+            --gray-100: #F0F0F0;
+            --gray-200: #D9D9D9;
+            --gray-300: #B8B8B8;
+            --gray-400: #8C8C8C;
+            --gray-500: #757575;
+            --gray-600: #5C5C5C;
+            --gray-700: #424242;
+            --gray-800: #292929;
+            
+            /* Daxko Success Greens */
+            --success-000: #DCFBE0;
+            --success-100: #BDEEC6;
+            --success-200: #86E196;
+            --success-300: #4DC860;
+            --success-400: #22A135;
+            --success-500: #008011;
+            
+            /* Daxko Warning Ambers */
+            --warning-000: #FFF1D2;
+            --warning-100: #F5DFAC;
+            --warning-200: #E8C780;
+            --warning-300: #D4A94B;
+            --warning-400: #AD8125;
+            --warning-500: #8E6408;
+            
+            /* Daxko Danger Reds */
+            --danger-000: #FFEFF0;
+            --danger-100: #FFD5D5;
+            --danger-200: #FFB1B0;
+            --danger-300: #FF7D77;
+            --danger-400: #F84845;
+            --danger-500: #D5110A;
+            
+            /* Daxko Brand Accents */
+            --cotton-candy: #a5dbd8;
+            --key-lime: #b3ba5a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-000);
+            color: var(--gray-800);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            padding: 40px 48px 32px;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: var(--primary-500);
+            color: white;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 16px;
+        }
+        
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 15px;
+            color: var(--gray-500);
+            max-width: 700px;
+            line-height: 1.5;
+        }
+        
+        /* Journey Container */
+        .journey-container {
+            padding: 32px 48px;
+            overflow-x: auto;
+            background: var(--gray-000);
+        }
+        
+        .journey-track {
+            display: flex;
+            gap: 20px;
+            min-width: max-content;
+        }
+        
+        /* Stage Card */
+        .stage-card {
+            width: 320px;
+            flex-shrink: 0;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        
+        .stage-card:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+        
+        /* Stage Header */
+        .stage-header {
+            padding: 20px 24px 16px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        
+        .stage-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--primary-500);
+            color: white;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .stage-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+        
+        /* Emotional State - Prominent but casual */
+        .emotional-state {
+            margin: 16px;
+            padding: 16px 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .emotional-state.positive {
+            background: var(--success-000);
+            border-left: 4px solid var(--success-400);
+        }
+        
+        .emotional-state.mixed {
+            background: var(--warning-000);
+            border-left: 4px solid var(--warning-300);
+        }
+        
+        .emotional-state.negative {
+            background: var(--danger-000);
+            border-left: 4px solid var(--danger-400);
+        }
+        
+        .emotional-state.complex {
+            background: linear-gradient(135deg, var(--success-000) 0%, var(--warning-000) 50%, var(--danger-000) 100%);
+            border-left: 4px solid var(--warning-300);
+        }
+        
+        .emotion-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        
+        .emotion-icon {
+            font-size: 20px;
+        }
+        
+        .emotion-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--gray-500);
+        }
+        
+        .emotion-text {
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+        
+        .emotional-state.positive .emotion-text { color: var(--success-500); }
+        .emotional-state.mixed .emotion-text { color: var(--warning-500); }
+        .emotional-state.negative .emotion-text { color: var(--danger-500); }
+        .emotional-state.complex .emotion-text { color: var(--gray-700); }
+        
+        /* Content Sections */
+        .stage-content {
+            padding: 0 24px 24px;
+        }
+        
+        .content-section {
+            margin-bottom: 20px;
+        }
+        
+        .content-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--gray-500);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .section-icon {
+            width: 14px;
+            height: 14px;
+            opacity: 0.7;
+        }
+        
+        .content-list {
+            list-style: none;
+        }
+        
+        .content-list li {
+            position: relative;
+            padding-left: 14px;
+            margin-bottom: 6px;
+            font-size: 13px;
+            color: var(--gray-600);
+            line-height: 1.4;
+        }
+        
+        .content-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--gray-300);
+        }
+        
+        /* Friction Section */
+        .friction-section {
+            background: var(--danger-000);
+            margin: 0 -24px;
+            padding: 16px 24px;
+            border-top: 1px solid var(--danger-100);
+        }
+        
+        .friction-section .section-label {
+            color: var(--danger-500);
+        }
+        
+        .friction-section .content-list li {
+            color: var(--danger-500);
+        }
+        
+        .friction-section .content-list li::before {
+            background: var(--danger-400);
+        }
+        
+        /* Questions Section */
+        .questions-section .content-list li {
+            font-style: italic;
+        }
+        
+        .questions-section .content-list li::before {
+            content: '?';
+            width: auto;
+            height: auto;
+            background: none;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary-500);
+            top: 0;
+            font-style: normal;
+        }
+        
+        /* Metrics Section */
+        .metrics-section {
+            background: var(--gray-000);
+            margin: 16px -24px 0;
+            padding: 16px 24px;
+            border-top: 1px solid var(--gray-200);
+        }
+        
+        .metrics-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        
+        .metric-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 100px;
+            font-size: 11px;
+            color: var(--gray-600);
+        }
+        
+        .metric-tag.manual {
+            border-color: var(--warning-200);
+            background: var(--warning-000);
+            color: var(--warning-500);
+        }
+        
+        .metric-tag.manual::after {
+            content: '(manual)';
+            font-size: 9px;
+            opacity: 0.8;
+        }
+        
+        /* Progress Timeline */
+        .timeline-container {
+            padding: 32px 48px 48px;
+            background: white;
+        }
+        
+        .timeline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gray-200);
+            transform: translateY(-50%);
+        }
+        
+        .timeline-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background: white;
+            border: 3px solid var(--primary-500);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .timeline-dot:hover {
+            background: var(--primary-500);
+            transform: scale(1.2);
+        }
+        
+        .timeline-label {
+            margin-top: 12px;
+            font-size: 12px;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 24px 40px;
+            color: var(--gray-400);
+            font-size: 13px;
+        }
+        
+        /* Scrollbar */
+        .journey-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .journey-container::-webkit-scrollbar-track {
+            background: var(--gray-100);
+            border-radius: 4px;
+        }
+        
+        .journey-container::-webkit-scrollbar-thumb {
+            background: var(--gray-300);
+            border-radius: 4px;
+        }
+        
+        .journey-container::-webkit-scrollbar-thumb:hover {
+            background: var(--gray-400);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header, .legend-bar, .journey-container, .timeline-container {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            
+            .stage-card {
+                width: 280px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .timeline-label {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <span class="badge">Current State</span>
+        <h1>SugarWOD Marketplace – Fitness Influencer Journey</h1>
+        <p class="subtitle">Mapping the real experience fitness creators have from discovery through ongoing success. Built for honest assessment.</p>
+    </header>
+    
+    <div class="timeline-container">
+        <div class="timeline">
+            <div class="timeline-step" onclick="scrollToCard(0)">
+                <div class="timeline-dot"></div>
+                <span class="timeline-label">Awareness</span>
+            </div>
+            <div class="timeline-step" onclick="scrollToCard(1)">
+                <div class="timeline-dot"></div>
+                <span class="timeline-label">Consideration</span>
+            </div>
+            <div class="timeline-step" onclick="scrollToCard(2)">
+                <div class="timeline-dot"></div>
+                <span class="timeline-label">Evaluation</span>
+            </div>
+            <div class="timeline-step" onclick="scrollToCard(3)">
+                <div class="timeline-dot"></div>
+                <span class="timeline-label">Decision</span>
+            </div>
+            <div class="timeline-step" onclick="scrollToCard(4)">
+                <div class="timeline-dot"></div>
+                <span class="timeline-label">Onboarding</span>
+            </div>
+            <div class="timeline-step" onclick="scrollToCard(5)">
+                <div class="timeline-dot"></div>
+                <span class="timeline-label">Launch</span>
+            </div>
+            <div class="timeline-step" onclick="scrollToCard(6)">
+                <div class="timeline-dot"></div>
+                <span class="timeline-label">Ongoing</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="journey-container">
+        <div class="journey-track">
+            
+            <!-- AWARENESS -->
+            <div class="stage-card">
+                <div class="stage-header">
+                    <div class="stage-number">1</div>
+                    <h2 class="stage-title">Awareness</h2>
+                </div>
+                
+                <div class="emotional-state mixed">
+                    <div class="emotion-header">
+                        <span class="emotion-icon">🤔</span>
+                        <span class="emotion-label">How they feel</span>
+                    </div>
+                    <div class="emotion-text">Curious, skeptical</div>
+                </div>
+                
+                <div class="stage-content">
+                    <div class="content-section">
+                        <div class="section-label">Primary Actions</div>
+                        <ul class="content-list">
+                            <li>Discover SugarWOD as an option</li>
+                            <li>Form an initial mental model (gym tool vs creator platform)</li>
+                            <li>Take first click to learn more</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <div class="section-label">What They Do</div>
+                        <ul class="content-list">
+                            <li>See SugarWOD via referrals/partners/athletes</li>
+                            <li>Visit Marketplace or brand sites using SugarWOD</li>
+                            <li>Scan for credibility signals</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section questions-section">
+                        <div class="section-label">Key Questions</div>
+                        <ul class="content-list">
+                            <li>Is SugarWOD built for online creators?</li>
+                            <li>Who else uses it?</li>
+                            <li>Do my athletes already know it?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section friction-section">
+                        <div class="section-label">⚠️ Friction & Barriers</div>
+                        <ul class="content-list">
+                            <li>Positioning ambiguity</li>
+                            <li>Limited influencer-focused messaging or creator case studies</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section metrics-section">
+                        <div class="section-label">Influencer-Centric Metrics</div>
+                        <div class="metrics-list">
+                            <span class="metric-tag">Website traffic</span>
+                            <span class="metric-tag manual">Source of lead</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CONSIDERATION -->
+            <div class="stage-card">
+                <div class="stage-header">
+                    <div class="stage-number">2</div>
+                    <h2 class="stage-title">Consideration</h2>
+                </div>
+                
+                <div class="emotional-state mixed">
+                    <div class="emotion-header">
+                        <span class="emotion-icon">🧐</span>
+                        <span class="emotion-label">How they feel</span>
+                    </div>
+                    <div class="emotion-text">Interested, uncertain</div>
+                </div>
+                
+                <div class="stage-content">
+                    <div class="content-section">
+                        <div class="section-label">Primary Actions</div>
+                        <ul class="content-list">
+                            <li>Validate platform fit for my business</li>
+                            <li>Compare alternatives</li>
+                            <li>Evaluate economics + audience fit</li>
+                            <li>Assess brand/control tradeoffs</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <div class="section-label">What They Do</div>
+                        <ul class="content-list">
+                            <li>Review SugarWOD site/Marketplace, ask peers</li>
+                            <li>Compare to Playbook/Trainerize/Kajabi/Skool</li>
+                            <li>Look for rev share, payouts, discovery, workflow</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section questions-section">
+                        <div class="section-label">Key Questions</div>
+                        <ul class="content-list">
+                            <li>How do I publish and sell?</li>
+                            <li>What % do they take?</li>
+                            <li>How do payouts work?</li>
+                            <li>Do I get customer emails/data?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section friction-section">
+                        <div class="section-label">⚠️ Friction & Barriers</div>
+                        <ul class="content-list">
+                            <li>Hard to visualize storefront and subscriber experience</li>
+                            <li>Limited clarity on discovery/marketing support</li>
+                            <li>Mixed signals due to gym-centric narratives</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section metrics-section">
+                        <div class="section-label">Influencer-Centric Metrics</div>
+                        <div class="metrics-list">
+                            <span class="metric-tag manual"># partner inquiries / demo requests</span>
+                            <span class="metric-tag manual">Time from inquiry → first response</span>
+                            <span class="metric-tag manual">Win/loss reason</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- EVALUATION -->
+            <div class="stage-card">
+                <div class="stage-header">
+                    <div class="stage-number">3</div>
+                    <h2 class="stage-title">Evaluation</h2>
+                </div>
+                
+                <div class="emotional-state mixed">
+                    <div class="emotion-header">
+                        <span class="emotion-icon">🤞</span>
+                        <span class="emotion-label">How they feel</span>
+                    </div>
+                    <div class="emotion-text">Hopeful, cautious</div>
+                </div>
+                
+                <div class="stage-content">
+                    <div class="content-section">
+                        <div class="section-label">Primary Actions</div>
+                        <ul class="content-list">
+                            <li>Request/attend demo or walkthrough</li>
+                            <li>Confirm onboarding requirements + time-to-live</li>
+                            <li>Validate publishing + delivery workflow</li>
+                            <li>Check reporting/insights</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <div class="section-label">What They Do</div>
+                        <ul class="content-list">
+                            <li>Engage SugarWOD team</li>
+                            <li>Review tools, checkout flow, support model</li>
+                            <li>Sanity-check analytics and operational overhead</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section questions-section">
+                        <div class="section-label">Key Questions</div>
+                        <ul class="content-list">
+                            <li>How quickly can I go live?</li>
+                            <li>What is self-serve vs manual?</li>
+                            <li>What reporting do I get?</li>
+                            <li>How do cancellations/support work?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section friction-section">
+                        <div class="section-label">⚠️ Friction & Barriers</div>
+                        <ul class="content-list">
+                            <li>Manual setup and admin steps</li>
+                            <li>Uncertainty about funnel visibility and marketing tools</li>
+                            <li>Concern about support load and brand perception</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section metrics-section">
+                        <div class="section-label">Influencer-Centric Metrics</div>
+                        <div class="metrics-list">
+                            <span class="metric-tag manual">% completing onboarding checklist</span>
+                            <span class="metric-tag manual">Time from contract → publisher enabled</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DECISION -->
+            <div class="stage-card">
+                <div class="stage-header">
+                    <div class="stage-number">4</div>
+                    <h2 class="stage-title">Decision</h2>
+                </div>
+                
+                <div class="emotional-state mixed">
+                    <div class="emotion-header">
+                        <span class="emotion-icon">⚖️</span>
+                        <span class="emotion-label">How they feel</span>
+                    </div>
+                    <div class="emotion-text">Optimistic or unconvinced</div>
+                </div>
+                
+                <div class="stage-content">
+                    <div class="content-section">
+                        <div class="section-label">Primary Actions</div>
+                        <ul class="content-list">
+                            <li>Choose join vs competitor</li>
+                            <li>Align on commercial terms (rev share, contract)</li>
+                            <li>Decide launch approach (migrate vs net-new)</li>
+                            <li>Commit time/resources to build content</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <div class="section-label">What They Do</div>
+                        <ul class="content-list">
+                            <li>Make a go/no-go decision</li>
+                            <li>Negotiate terms if needed</li>
+                            <li>Set launch timeline and internal commitments</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section questions-section">
+                        <div class="section-label">Key Questions</div>
+                        <ul class="content-list">
+                            <li>Is the upside worth switching?</li>
+                            <li>What risks do I take on?</li>
+                            <li>What's my launch plan and timeline?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section friction-section">
+                        <div class="section-label">⚠️ Friction & Barriers</div>
+                        <ul class="content-list">
+                            <li>Risk aversion to platform switch</li>
+                            <li>Uncertainty on time-to-revenue and discovery</li>
+                            <li>Fear of losing brand control</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section metrics-section">
+                        <div class="section-label">Influencer-Centric Metrics</div>
+                        <div class="metrics-list">
+                            <span class="metric-tag">Close rate (inquiry → signed)</span>
+                            <span class="metric-tag">Time to contract signature</span>
+                            <span class="metric-tag">Rev share % (deal terms)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ONBOARDING -->
+            <div class="stage-card">
+                <div class="stage-header">
+                    <div class="stage-number">5</div>
+                    <h2 class="stage-title">Onboarding</h2>
+                </div>
+                
+                <div class="emotional-state negative">
+                    <div class="emotion-header">
+                        <span class="emotion-icon">😰</span>
+                        <span class="emotion-label">How they feel</span>
+                    </div>
+                    <div class="emotion-text">Overwhelmed, confused, regret</div>
+                </div>
+                
+                <div class="stage-content">
+                    <div class="content-section">
+                        <div class="section-label">Primary Actions</div>
+                        <ul class="content-list">
+                            <li>Complete required account setup</li>
+                            <li>Configure monetization (Stripe, pricing)</li>
+                            <li>Build storefront</li>
+                            <li>Publish first program(s) + validate delivery</li>
+                            <li>Coordinate go-live readiness</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <div class="section-label">What They Do</div>
+                        <ul class="content-list">
+                            <li>Create/update accounts, set up Stripe</li>
+                            <li>Create products and storefront</li>
+                            <li>Build tracks/workouts</li>
+                            <li>Coordinate SugarWOD steps for enablement</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section questions-section">
+                        <div class="section-label">Key Questions</div>
+                        <ul class="content-list">
+                            <li>What's required for me to go live?</li>
+                            <li>What are the exact steps?</li>
+                            <li>Who owns each step?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section friction-section">
+                        <div class="section-label">⚠️ Friction & Barriers</div>
+                        <ul class="content-list">
+                            <li>Not fully self-service</li>
+                            <li>UI learning curve</li>
+                            <li>Potential dependency on calls/support</li>
+                            <li>Manual validation/testing</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section metrics-section">
+                        <div class="section-label">Influencer-Centric Metrics</div>
+                        <div class="metrics-list">
+                            <span class="metric-tag manual">Time from signed → storefront live</span>
+                            <span class="metric-tag manual">% Stripe connected</span>
+                            <span class="metric-tag"># products/programs created</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- LAUNCH -->
+            <div class="stage-card">
+                <div class="stage-header">
+                    <div class="stage-number">6</div>
+                    <h2 class="stage-title">Launch</h2>
+                </div>
+                
+                <div class="emotional-state mixed">
+                    <div class="emotion-header">
+                        <span class="emotion-icon">🚀</span>
+                        <span class="emotion-label">How they feel</span>
+                    </div>
+                    <div class="emotion-text">Nervous, hopeful</div>
+                </div>
+                
+                <div class="stage-content">
+                    <div class="content-section">
+                        <div class="section-label">Primary Actions</div>
+                        <ul class="content-list">
+                            <li>Activate products live + validate purchase</li>
+                            <li>Execute launch marketing</li>
+                            <li>Drive subscriber acquisition</li>
+                            <li>Monitor early issues + feedback</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <div class="section-label">What They Do</div>
+                        <ul class="content-list">
+                            <li>Promote via Instagram/email/website</li>
+                            <li>Athletes purchase, download app, start trial</li>
+                            <li>Creator monitors early performance</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section questions-section">
+                        <div class="section-label">Key Questions</div>
+                        <ul class="content-list">
+                            <li>Is checkout converting?</li>
+                            <li>Are trials converting to paid?</li>
+                            <li>Are athletes engaging and returning?</li>
+                            <li>What issues are blocking revenue?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section friction-section">
+                        <div class="section-label">⚠️ Friction & Barriers</div>
+                        <ul class="content-list">
+                            <li>Limited attribution and funnel visibility</li>
+                            <li>Trial churn</li>
+                            <li>Billing/cancellation support risk</li>
+                            <li>Early issues create reputational risk</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section metrics-section">
+                        <div class="section-label">Influencer-Centric Metrics</div>
+                        <div class="metrics-list">
+                            <span class="metric-tag">Net revenue by partner</span>
+                            <span class="metric-tag"># paying subscribers (by partner)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ONGOING -->
+            <div class="stage-card">
+                <div class="stage-header">
+                    <div class="stage-number">7</div>
+                    <h2 class="stage-title">Ongoing</h2>
+                </div>
+                
+                <div class="emotional-state complex">
+                    <div class="emotion-header">
+                        <span class="emotion-icon">📈</span>
+                        <span class="emotion-label">How they feel</span>
+                    </div>
+                    <div class="emotion-text">Loyal if growing, frustrated if stagnant</div>
+                </div>
+                
+                <div class="stage-content">
+                    <div class="content-section">
+                        <div class="section-label">Primary Actions</div>
+                        <ul class="content-list">
+                            <li>Maintain publishing cadence</li>
+                            <li>Support subscribers + reduce churn</li>
+                            <li>Optimize conversion/retention using insights</li>
+                            <li>Expand catalog and revenue</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <div class="section-label">What They Do</div>
+                        <ul class="content-list">
+                            <li>Publish on a recurring cadence</li>
+                            <li>Support subscribers</li>
+                            <li>Iterate on programming and engagement</li>
+                            <li>Watch revenue, churn, and retention</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section questions-section">
+                        <div class="section-label">Key Questions</div>
+                        <ul class="content-list">
+                            <li>Is this growing my business?</li>
+                            <li>What drives churn?</li>
+                            <li>What insights do I get to optimize?</li>
+                            <li>How responsive is support?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section friction-section">
+                        <div class="section-label">⚠️ Friction & Barriers</div>
+                        <ul class="content-list">
+                            <li>Limited self-serve growth tooling</li>
+                            <li>Incomplete subscriber insights</li>
+                            <li>Support/process gaps</li>
+                            <li>Revenue concentration risk</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section metrics-section">
+                        <div class="section-label">Influencer-Centric Metrics</div>
+                        <div class="metrics-list">
+                            <span class="metric-tag"># active influencers (published + subscribers)</span>
+                            <span class="metric-tag">Influencer retention (MoM active)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="footer">
+        Current State Analysis · SugarWOD Marketplace
+    </div>
+    
+    <script>
+        function scrollToCard(index) {
+            const cards = document.querySelectorAll('.stage-card');
+            if (cards[index]) {
+                cards[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
+        }
+    </script>
+</body>
+</html>
